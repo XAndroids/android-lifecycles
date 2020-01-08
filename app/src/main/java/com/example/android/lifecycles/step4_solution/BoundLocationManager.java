@@ -42,6 +42,8 @@ public class BoundLocationManager {
                                      LocationListener listener, Context context) {
             mContext = context;
             mListener = listener;
+
+            //BoundLocationListener监听Activity的生命周期
             lifecycleOwner.getLifecycle().addObserver(this);
         }
 
@@ -55,7 +57,7 @@ public class BoundLocationManager {
             mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mListener);
             Log.d("BoundLocationMgr", "Listener added");
 
-            // Force an update with the last location, if available.
+            //强制更新最新的位置，如果有的话
             Location lastLocation = mLocationManager.getLastKnownLocation(
                     LocationManager.GPS_PROVIDER);
             if (lastLocation != null) {
