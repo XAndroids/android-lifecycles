@@ -42,6 +42,7 @@ public class ChronoActivity3 extends AppCompatActivity {
     }
 
     private void subscribe() {
+        //监听mLiveDataTimerViewModel中ElapsedTime的变化
         final Observer<Long> elapsedTimeObserver = new Observer<Long>() {
             @Override
             public void onChanged(@Nullable final Long aLong) {

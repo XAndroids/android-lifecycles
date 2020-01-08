@@ -40,12 +40,12 @@ public class LiveDataTimerViewModel extends ViewModel {
         mInitialTime = SystemClock.elapsedRealtime();
         timer = new Timer();
 
-        // Update the elapsed time every second.
+        //每秒更新过去的时间
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 final long newValue = (SystemClock.elapsedRealtime() - mInitialTime) / 1000;
-                // setValue() cannot be called from a background thread so post to main thread.
+                //setValue()不能在后台线程中调用，所以post到main线程
                 mElapsedTime.postValue(newValue);
             }
         }, ONE_SECOND, ONE_SECOND);
