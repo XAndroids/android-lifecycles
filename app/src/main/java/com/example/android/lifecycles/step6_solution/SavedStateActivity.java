@@ -40,10 +40,10 @@ public class SavedStateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.saved_state_activity);
 
-        // Obtain the ViewModel
+        //获取ViewModel
         mSavedStateViewModel = new ViewModelProvider(this).get(SavedStateViewModel.class);
 
-        // Show the ViewModel property's value in a TextView
+        //在TextView上展示ViewModel属性的值
         mSavedStateViewModel.getName().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String savedString) {
@@ -53,7 +53,7 @@ public class SavedStateActivity extends AppCompatActivity {
             }
         });
 
-        // Save button
+        //保存按钮
         findViewById(R.id.save_bt).setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {

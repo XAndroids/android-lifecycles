@@ -21,25 +21,23 @@ import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
 public class SavedStateViewModel extends ViewModel {
-
     private static final String NAME_KEY = "name";
 
+    //进程杀死之后，还会保存ViewModel数据
     private SavedStateHandle mState;
 
     public SavedStateViewModel(SavedStateHandle savedStateHandle) {
         mState = savedStateHandle;
     }
 
-    // Expose an immutable LiveData
+    //暴露一个不可见的LiveData
     LiveData<String> getName() {
-        // getLiveData obtains an object that is associated with the key wrapped in a LiveData
-        // so it can be observed for changes.
+        //getLiveData获取一个对象，该对象与LiveData中包装的key相关联，因此你可以观察它的改变
         return mState.getLiveData(NAME_KEY);
     }
 
     void saveNewName(String newName) {
-        // Sets a new value for the object associated to the key. There's no need to set it
-        // as a LiveData.
+        //为和key相关联的对象设置一个新的值，没有必要将它设置为LiveData
         mState.set(NAME_KEY, newName);
     }
 }
