@@ -31,21 +31,22 @@ public class ChronoActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // The ViewModelStore provides a new ViewModel or one previously created.
+        //ViewModelStore提供了一个新的ViewModel或者前面创建的一个
+        //从源码查看ViewModelStore使用Map在内存中保存了当前Activity的ViewModel对象
+        //ChronometerViewModel.class是Map保存的Key
         ChronometerViewModel chronometerViewModel
                 = new ViewModelProvider(this).get(ChronometerViewModel.class);
 
-        // Get the chronometer reference
+        //获取chronometer引用
         Chronometer chronometer = findViewById(R.id.chronometer);
 
         if (chronometerViewModel.getStartTime() == null) {
-            // If the start date is not defined, it's a new ViewModel so set it.
+            //如果开始时间没有定义，它是一个新的ViewModel，设置它
             long startTime = SystemClock.elapsedRealtime();
             chronometerViewModel.setStartTime(startTime);
             chronometer.setBase(startTime);
         } else {
-            // Otherwise the ViewModel has been retained, set the chronometer's base to the original
-            // starting time.
+            //另一方面ViewModel已经保留，使用原来的开始时间设置chronometer
             chronometer.setBase(chronometerViewModel.getStartTime());
         }
 
